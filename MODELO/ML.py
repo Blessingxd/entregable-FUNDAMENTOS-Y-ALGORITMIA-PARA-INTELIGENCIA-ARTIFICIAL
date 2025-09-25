@@ -1,9 +1,9 @@
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report
 
 data = {
     "edad": [25, 45, 35, 50, 23, 40, 60, 48, 33, 55, 29, 44, 38, 22, 36, 52, 31, 49, 58, 27],
@@ -15,7 +15,7 @@ data = {
 
 df = pd.DataFrame(data)
 
-X = df.drop("aprobado", axis=1)
+X = df[["edad", "ingresos", "hijos", "deuda"]]
 y = df["aprobado"]
 
 x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -42,10 +42,7 @@ edades = [22, 25, 30, 35, 40, 45, 50, 55, 60, 62, 64, 70, 75, 80, 85]
 ingresos = [1500, 1800, 2500, 3000, 3500, 3800, 4000, 4200, 4500, 4700, 5000, 5200, 5400, 5600, 6000]
 
 plt.hist(edades, bins=8, edgecolor='black')
-
 plt.show()
 
 sns.scatterplot(x=edades, y=ingresos)
-
 plt.show()
-
